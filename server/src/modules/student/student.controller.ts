@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { handleLibraryError } from '../../utils/error/error.util';
+import {
+  handleClientError,
+  handleLibraryError,
+} from '../../utils/error/error.util';
 import { Classmate, Me } from '../../utils/types';
 import { studentService } from './student.service';
 
@@ -8,7 +11,11 @@ export const studentController = {
     const { myId } = req.params;
 
     try {
-      const student: Me = await studentService.getMyInfo(Number(myId));
+      const student: Me | null = await studentService.getMyInfo(Number(myId));
+
+      if (!student)
+        return handleClientError(500, 'Could not find student.', res);
+
       return res.status(200).json({ student });
     } catch (error) {
       return handleLibraryError(error, res);
@@ -19,7 +26,13 @@ export const studentController = {
     const { id } = req.params;
 
     try {
-      const student: Classmate = await studentService.getClassmate(Number(id));
+      const student: Classmate | null = await studentService.getClassmate(
+        Number(id)
+      );
+
+      if (!student)
+        return handleClientError(500, 'Could not find student.', res);
+
       return res.status(200).json({ student });
     } catch (error) {
       return handleLibraryError(error, res);
@@ -30,9 +43,12 @@ export const studentController = {
     const { myId } = req.params;
 
     try {
-      const students: Classmate[] = await studentService.getAllClassmates(
-        Number(myId)
-      );
+      const students: Classmate[] | null =
+        await studentService.getAllClassmates(Number(myId));
+
+      if (!students)
+        return handleClientError(500, 'Could not find student.', res);
+
       return res.status(200).json({ students });
     } catch (error) {
       return handleLibraryError(error, res);

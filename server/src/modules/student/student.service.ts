@@ -2,13 +2,13 @@ import { databaseClient } from '../../database';
 import { Classmate, Me } from '../../utils/types';
 
 export const studentService = {
-  getMyInfo: async (studentId: number): Promise<Me> => {
+  getMyInfo: async (studentId: number): Promise<Me | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
       include: { votes: true, scientist: true },
     });
 
-    if (!student) throw ''; // TODO: Add and handle error message.
+    if (!student) return null;
     const { id, name, tshirtSize, note, votes, scientist } = student;
 
     return {
@@ -21,23 +21,23 @@ export const studentService = {
     };
   },
 
-  getClassmate: async (studentId: number): Promise<Classmate> => {
+  getClassmate: async (studentId: number): Promise<Classmate | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
       include: { nicknames: true },
     });
 
-    if (!student) throw ''; // TODO: Add and handle error message.
+    if (!student) return null;
     return student;
   },
 
-  getAllClassmates: async (studentId: number): Promise<Classmate[]> => {
+  getAllClassmates: async (studentId: number): Promise<Classmate[] | null> => {
     const students = await databaseClient.student.findMany({
       where: { NOT: { id: studentId } },
       include: { nicknames: true },
     });
 
-    if (!students) throw ''; // TODO: Add and handle error message.
+    if (!students) return null;
     return students;
   },
 };
