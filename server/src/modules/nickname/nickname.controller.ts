@@ -23,7 +23,7 @@ export const nicknameController = {
     }
 
     if (!newnickname)
-      return handleClientError(500, 'Could not add nickname', res);
+      return handleClientError(500, 'Could not add nickname.', res);
 
     return res.status(201).json({ nickname: newnickname });
   },
