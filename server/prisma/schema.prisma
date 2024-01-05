@@ -14,8 +14,8 @@ model Student {
   salt       String
   tshirtSize String
   note       String?
-  nickname   Nickname[]
-  vote       Vote[]
+  nicknames  Nickname[]
+  votes      Vote[]
   scientist  Scientist[]
 }
 
