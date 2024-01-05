@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 
+import { studentRouter } from './modules/student/student.route';
+
 dotenv.config();
 
 const app = express();
@@ -14,5 +16,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
 //Routes
+app.use(studentRouter);
 
 export default app;
