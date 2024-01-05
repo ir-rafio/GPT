@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { handleLibraryError } from '../../utils/error/error.util';
 import { Classmate, Me } from '../../utils/types';
-import { StudentService } from './student.service';
+import { studentService } from './student.service';
 
 export const studentController = {
   getMyInfo: async (req: Request, res: Response) => {
     const { myId } = req.params;
 
     try {
-      const student: Me = await StudentService.getMyInfo(Number(myId));
+      const student: Me = await studentService.getMyInfo(Number(myId));
       return res.status(200).json({ student });
     } catch (error) {
       return handleLibraryError(error, res);
@@ -19,7 +19,7 @@ export const studentController = {
     const { id } = req.params;
 
     try {
-      const student: Classmate = await StudentService.getClassmate(Number(id));
+      const student: Classmate = await studentService.getClassmate(Number(id));
       return res.status(200).json({ student });
     } catch (error) {
       return handleLibraryError(error, res);
@@ -30,7 +30,7 @@ export const studentController = {
     const { myId } = req.params;
 
     try {
-      const students: Classmate[] = await StudentService.getAllClassmates(
+      const students: Classmate[] = await studentService.getAllClassmates(
         Number(myId)
       );
       return res.status(200).json({ students });

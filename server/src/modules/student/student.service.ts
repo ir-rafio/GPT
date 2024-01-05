@@ -1,7 +1,7 @@
 import { databaseClient } from '../../database';
 import { Classmate, Me } from '../../utils/types';
 
-export const StudentService = {
+export const studentService = {
   getMyInfo: async (studentId: number): Promise<Me> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
