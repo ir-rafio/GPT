@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 
+import { nicknameRouter } from './modules/nickname/nickname.route';
 import { studentRouter } from './modules/student/student.route';
 
 dotenv.config();
@@ -17,5 +18,6 @@ app.use(cors());
 
 //Routes
 app.use(studentRouter);
+app.use(nicknameRouter);
 
 export default app;
