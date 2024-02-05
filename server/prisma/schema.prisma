@@ -41,12 +41,13 @@ model Vote {
 }
 
 model Comment {
-  text     String
-  sender   Int
-  receiver Int
-  student  Student @relation(fields: [receiver], references: [id])
-
-  @@id([text, receiver])
+  id        String   @id @default(uuid())
+  text      String
+  sender    Int
+  receiver  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  student   Student  @relation(fields: [receiver], references: [id])
 }
 
 model Scientist {
