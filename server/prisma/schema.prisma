@@ -10,22 +10,23 @@ datasource db {
 model Student {
   id         Int         @id
   name       String
-  password   String
-  salt       String
+  oauthToken String
   tshirtSize String
-  note       String?
+  note       String
   nicknames  Nickname[]
   votes      Vote[]
+  comments   Comment[]
   scientist  Scientist[]
 }
 
 model Nickname {
-  name      String
-  studentId Int
-  student   Student @relation(fields: [studentId], references: [id])
-  vote      Vote[]
+  name     String
+  sender   Int
+  receiver Int
+  student  Student @relation(fields: [receiver], references: [id])
+  vote     Vote[]
 
-  @@id([name, studentId])
+  @@id([name, receiver])
 }
 
 model Vote {
@@ -33,10 +34,19 @@ model Vote {
   voter     Int
   votee     Int
   updatedAt DateTime @updatedAt
-  nickname  Nickname @relation(fields: [name, votee], references: [name, studentId])
+  nickname  Nickname @relation(fields: [name, votee], references: [name, receiver])
   student   Student  @relation(fields: [voter], references: [id])
 
   @@id([voter, votee])
+}
+
+model Comment {
+  text     String
+  sender   Int
+  receiver Int
+  student  Student @relation(fields: [receiver], references: [id])
+
+  @@id([text, receiver])
 }
 
 model Scientist {

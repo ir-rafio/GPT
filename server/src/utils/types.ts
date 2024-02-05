@@ -1,4 +1,4 @@
-import { Nickname, Vote } from '@prisma/client';
+import { Comment, Nickname, Vote } from '@prisma/client';
 
 interface StudentBase {
   id: number;
@@ -14,4 +14,5 @@ export interface Me extends StudentBase {
 
 export interface Classmate extends StudentBase {
   nicknames: Nickname[];
+  comments: Comment[];
 }

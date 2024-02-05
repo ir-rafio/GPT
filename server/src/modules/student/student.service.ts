@@ -24,7 +24,7 @@ export const studentService = {
   getClassmate: async (studentId: number): Promise<Classmate | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
-      include: { nicknames: true },
+      include: { nicknames: true, comments: true },
     });
 
     if (!student) return null;
@@ -34,7 +34,7 @@ export const studentService = {
   getAllClassmates: async (studentId: number): Promise<Classmate[] | null> => {
     const students = await databaseClient.student.findMany({
       where: { NOT: { id: studentId } },
-      include: { nicknames: true },
+      include: { nicknames: true, comments: true },
     });
 
     if (!students) return null;
