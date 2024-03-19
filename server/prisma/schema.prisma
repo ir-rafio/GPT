@@ -32,12 +32,12 @@ model Nickname {
 model Vote {
   name      String
   voter     Int
-  votee     Int
+  receiver  Int
   updatedAt DateTime @updatedAt
-  nickname  Nickname @relation(fields: [name, votee], references: [name, receiver])
+  nickname  Nickname @relation(fields: [name, receiver], references: [name, receiver])
   student   Student  @relation(fields: [voter], references: [id])
 
-  @@id([voter, votee])
+  @@id([voter, receiver])
 }
 
 model Comment {

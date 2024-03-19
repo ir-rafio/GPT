@@ -12,8 +12,22 @@ export const nicknameSchema = {
       }),
     }),
   }),
+
+  deleteNicknameSchema: z.object({
+    query: z.object({
+      data: z.object({
+        myId: z.number(),
+        name: z.string(),
+        receiver: z.number(),
+      }),
+    }),
+  }),
 };
 
 export type CreateNicknameBody = z.infer<
   typeof nicknameSchema.createNicknameSchema
 >['body'];
+
+export type DeleteNicknameQuery = z.infer<
+  typeof nicknameSchema.deleteNicknameSchema
+>['query'];
