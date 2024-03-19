@@ -9,7 +9,7 @@ interface StudentBase {
 
 export interface Me extends StudentBase {
   votes: Vote[];
-  amAScientist: boolean;
+  turnedIn: boolean;
 }
 
 export interface Classmate extends StudentBase {

@@ -16,18 +16,18 @@ export const studentService = {
       tshirtSize,
       note,
       votes: [],
-      amAScientist: false,
+      turnedIn: false,
     };
   },
 
   getMyInfo: async (studentId: number): Promise<Me | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
-      include: { votes: true, scientist: true },
+      include: { votes: true, nerd: true },
     });
 
     if (!student) return null;
-    const { id, name, tshirtSize, note, votes, scientist } = student;
+    const { id, name, tshirtSize, note, votes, nerd } = student;
 
     return {
       id,
@@ -35,7 +35,7 @@ export const studentService = {
       tshirtSize,
       note,
       votes,
-      amAScientist: scientist.length === 1,
+      turnedIn: nerd.length === 1,
     };
   },
 
@@ -51,11 +51,11 @@ export const studentService = {
 
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
-      include: { votes: true, scientist: true },
+      include: { votes: true, nerd: true },
     });
 
     if (!student) return null;
-    const { id, name, votes, scientist } = student;
+    const { id, name, votes, nerd } = student;
 
     return {
       id,
@@ -63,7 +63,7 @@ export const studentService = {
       tshirtSize,
       note,
       votes,
-      amAScientist: scientist.length === 1,
+      turnedIn: nerd.length === 1,
     };
   },
 

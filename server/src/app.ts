@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 
+import { commentRouter } from './modules/comment/comment.route';
 import { nicknameRouter } from './modules/nickname/nickname.route';
 import { studentRouter } from './modules/student/student.route';
 import { voteRouter } from './modules/vote/vote.route';
@@ -21,5 +22,6 @@ app.use(cors());
 app.use('/student', studentRouter);
 app.use('/nickname', nicknameRouter);
 app.use('/vote', voteRouter);
+app.use('/comment', commentRouter);
 
 export default app;

@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Student {
-  id         Int         @id
+  id         Int        @id
   name       String
   oauthToken String
   tshirtSize String
@@ -16,7 +16,7 @@ model Student {
   nicknames  Nickname[]
   votes      Vote[]
   comments   Comment[]
-  scientist  Scientist[]
+  nerd       Nerd[]
 }
 
 model Nickname {
@@ -50,7 +50,7 @@ model Comment {
   student   Student  @relation(fields: [receiver], references: [id])
 }
 
-model Scientist {
+model Nerd {
   id      Int     @id
   student Student @relation(fields: [id], references: [id])
 }
