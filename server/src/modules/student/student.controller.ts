@@ -4,6 +4,7 @@ import {
   handleLibraryError,
 } from '../../utils/error/error.util';
 import { Classmate, Me } from '../../utils/types';
+import { EditStudentBody } from './student.schema';
 import { studentService } from './student.service';
 
 export const studentController = {
@@ -22,12 +23,13 @@ export const studentController = {
     }
   },
 
-  editMyInfo: async (req: Request, res: Response) => {
-    const { myId, note, tshirtSize } = req.body;
+  editMyInfo: async (req: Request<{}, {}, EditStudentBody>, res: Response) => {
+    const { data } = req.body;
+    const { myId, note, tshirtSize } = data;
 
     try {
       const student: Me | null = await studentService.editMyInfo(
-        Number(myId),
+        myId,
         note,
         tshirtSize
       );
