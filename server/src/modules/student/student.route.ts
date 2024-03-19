@@ -3,6 +3,8 @@ import { studentController } from './student.controller';
 
 export const studentRouter = Router();
 
+studentRouter.post('/student/create', studentController.createStudent);
+
 studentRouter.get('/me/:myId/get', studentController.getMyInfo);
 
 studentRouter.post('/me/edit/post', studentController.editMyInfo);

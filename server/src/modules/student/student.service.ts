@@ -1,7 +1,15 @@
+import { Student } from '@prisma/client';
 import { databaseClient } from '../../database';
 import { Classmate, Me } from '../../utils/types';
 
 export const studentService = {
+  createStudent: async (student: Student) => {
+    const newStudent = await databaseClient.student.create({
+      data: student,
+    });
+    return newStudent;
+  },
+
   getMyInfo: async (studentId: number): Promise<Me | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
