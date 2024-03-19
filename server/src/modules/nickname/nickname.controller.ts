@@ -14,17 +14,17 @@ export const nicknameController = {
     const { data } = req.body;
     const { nickname } = data;
 
-    let newnickname;
+    let newNickname;
 
     try {
-      newnickname = await nicknameService.createNickname(nickname);
+      newNickname = await nicknameService.createNickname(nickname);
     } catch (error) {
       return handleLibraryError(error, res);
     }
 
-    if (!newnickname)
+    if (!newNickname)
       return handleClientError(500, 'Could not add nickname.', res);
 
-    return res.status(201).json({ nickname: newnickname });
+    return res.status(201).json({ nickname: newNickname });
   },
 };
