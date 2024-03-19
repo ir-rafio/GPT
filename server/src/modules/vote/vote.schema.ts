@@ -9,6 +9,7 @@ export const voteSchema = {
           voter: z.number(),
           receiver: z.number(),
         }),
+        myId: z.number(),
       }),
     }),
   }),

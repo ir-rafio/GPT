@@ -9,7 +9,15 @@ import { voteService } from './vote.service';
 export const voteController = {
   addVote: async (req: Request<{}, {}, AddVoteBody>, res: Response) => {
     const { data } = req.body;
-    const { vote } = data;
+    const { vote, myId } = data;
+    const { voter } = vote;
+
+    if (voter !== myId)
+      return handleClientError(
+        401,
+        'You are not authorized to delete this comment.',
+        res
+      );
 
     let newVote;
 
