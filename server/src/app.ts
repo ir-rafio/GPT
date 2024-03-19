@@ -5,6 +5,7 @@ import express from 'express';
 
 import { nicknameRouter } from './modules/nickname/nickname.route';
 import { studentRouter } from './modules/student/student.route';
+import { voteRouter } from './modules/vote/vote.route';
 
 dotenv.config();
 
@@ -19,5 +20,6 @@ app.use(cors());
 //Routes
 app.use('/student', studentRouter);
 app.use('/nickname', nicknameRouter);
+app.use('/vote', voteRouter);
 
 export default app;
