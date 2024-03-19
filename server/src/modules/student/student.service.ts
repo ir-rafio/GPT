@@ -21,6 +21,34 @@ export const studentService = {
     };
   },
 
+  editMyInfo: async (
+    studentId: number,
+    note: string,
+    tshirtSize: string
+  ): Promise<Me | null> => {
+    await databaseClient.student.update({
+      where: { id: studentId },
+      data: { note, tshirtSize },
+    });
+
+    const student = await databaseClient.student.findUnique({
+      where: { id: studentId },
+      include: { votes: true, scientist: true },
+    });
+
+    if (!student) return null;
+    const { id, name, votes, scientist } = student;
+
+    return {
+      id,
+      name,
+      tshirtSize,
+      note,
+      votes,
+      amAScientist: scientist.length === 1,
+    };
+  },
+
   getClassmate: async (studentId: number): Promise<Classmate | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },

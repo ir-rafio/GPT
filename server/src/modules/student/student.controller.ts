@@ -22,6 +22,25 @@ export const studentController = {
     }
   },
 
+  editMyInfo: async (req: Request, res: Response) => {
+    const { myId, note, tshirtSize } = req.body;
+
+    try {
+      const student: Me | null = await studentService.editMyInfo(
+        Number(myId),
+        note,
+        tshirtSize
+      );
+
+      if (!student)
+        return handleClientError(500, 'Could not find student.', res);
+
+      return res.status(200).json({ student });
+    } catch (error) {
+      return handleLibraryError(error, res);
+    }
+  },
+
   getClassmate: async (req: Request, res: Response) => {
     const { id } = req.params;
 
