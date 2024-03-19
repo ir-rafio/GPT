@@ -6,7 +6,8 @@ export const nicknameSchema = {
       data: z.object({
         nickname: z.object({
           name: z.string(),
-          studentId: z.number(),
+          sender: z.number(),
+          receiver: z.number(),
         }),
       }),
     }),
