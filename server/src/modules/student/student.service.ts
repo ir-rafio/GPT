@@ -3,11 +3,21 @@ import { databaseClient } from '../../database';
 import { Classmate, Me } from '../../utils/types';
 
 export const studentService = {
-  createStudent: async (student: Student) => {
+  createStudent: async (student: Student): Promise<Me> => {
     const newStudent = await databaseClient.student.create({
       data: student,
     });
-    return newStudent;
+
+    const { id, name, tshirtSize, note } = newStudent;
+
+    return {
+      id,
+      name,
+      tshirtSize,
+      note,
+      votes: [],
+      amAScientist: false,
+    };
   },
 
   getMyInfo: async (studentId: number): Promise<Me | null> => {
