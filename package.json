@@ -20,7 +20,7 @@
     "start": "bun packages/server/dist/index.js",
     "build-start": "bun run build && bun start",
     "prepare": "husky install",
-        "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"
+    "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,prisma}": [
