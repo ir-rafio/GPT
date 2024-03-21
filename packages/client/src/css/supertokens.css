@@ -1,0 +1,20 @@
+[data-supertokens="container"] {
+  background: hsl(var(--accent));
+  box-shadow: 1px 1px 10px hsl(var(--accent-foreground));
+
+  div {
+    color: hsl(var(--text-primary-foreground));
+  }
+
+  [name="email"] {
+    background-color: white;
+  }
+
+  [data-supertokens="superTokensBranding"] {
+    display: none;
+  }
+
+  [data-supertokens="generalError"] {
+    color: black;
+  }
+}
