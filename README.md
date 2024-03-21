@@ -6,6 +6,8 @@
 bun install
 ```
 
+Run `bun prepare` to initialize husky.
+
 ### Database setup
 
 ```sh
