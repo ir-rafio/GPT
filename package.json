@@ -19,7 +19,8 @@
     "build:prod": "bun build:server && bun build:client",
     "start": "bun packages/server/dist/index.js",
     "build-start": "bun run build && bun start",
-    "prepare": "husky install"
+    "prepare": "husky install",
+        "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"
   },
   "lint-staged": {
     "**/*.{js,ts,tsx,json,css,prisma}": [
