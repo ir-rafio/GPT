@@ -19,8 +19,6 @@
     "build:prod": "bun build:server && bun build:client",
     "start": "bun packages/server/dist/index.js",
     "build-start": "bun run build && bun start",
-    "env:push": "bun dotenv-vault push",
-    "env:pull": "bun dotenv-vault pull",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -30,7 +28,6 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "dotenv-vault": "^1.26.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
