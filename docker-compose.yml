@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5434:5432
+    env_file:
+      - .dockerenv
+    volumes:
+      - gpt_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  gpt_postgres_data:

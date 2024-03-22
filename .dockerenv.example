@@ -1,0 +1,4 @@
+# db
+POSTGRES_USER="pguser"
+POSTGRES_PASSWORD="pgpass"
+POSTGRES_DB="gpt"

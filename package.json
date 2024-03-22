@@ -18,6 +18,8 @@
     "build:dev": "bun build:server:dev && bun build:client",
     "build:prod": "bun build:server && bun build:client",
     "start": "bun packages/server/dist/index.js",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker compose stop",
     "build-start": "bun run build && bun start",
     "prepare": "husky install",
     "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"

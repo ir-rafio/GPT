@@ -10,6 +10,20 @@ Run `bun prepare` to initialize husky.
 
 ### Database setup
 
+#### Spin up postgres
+
+If you already have a postgres running, skip this step.
+
+Populate .dockerenv file. You can use `.dockerenv.example`.
+
+```sh
+bun db:start
+```
+
+To stop the database run `bun db:stop`
+
+#### Prisma setup
+
 ```sh
 bun prisma migrate dev
 ```
