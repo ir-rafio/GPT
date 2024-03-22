@@ -1,0 +1,8 @@
+{
+  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-prisma"],
+  "semi": true,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "singleQuote": false,
+  "printWidth": 80
+}

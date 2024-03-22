@@ -1,0 +1,38 @@
+{
+  "name": "GPT",
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "prisma": {
+    "schema": "packages/server/prisma/schema.prisma"
+  },
+  "scripts": {
+    "dev:client": "bun --cwd packages/client dev",
+    "dev:server": "bun --cwd packages/server dev",
+    "dev": "concurrently -n 'server,client' -c 'red,blue' 'bun dev:server' 'bun dev:client'",
+    "build:server": "bun --cwd packages/server build:prod",
+    "build:server:dev": "bun --cwd packages/server build:dev",
+    "build:client": "bun --cwd packages/client build:prod",
+    "build:dev": "bun build:server:dev && bun build:client",
+    "build:prod": "bun build:server && bun build:client",
+    "start": "bun packages/server/dist/index.js",
+    "build-start": "bun run build && bun start",
+    "prepare": "husky install",
+    "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx,json,css,prisma}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prettier-plugin-prisma": "^5.0.0"
+  }
+}
