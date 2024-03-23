@@ -8,6 +8,7 @@ import { PrivateRoute } from "./privateRoute";
 
 const Home = React.lazy(() => import("@/pages/home"));
 const Test = React.lazy(() => import("@/pages/test"));
+const CarouselSize = React.lazy(() => import("@/pages/carouselsize"));
 
 export const RouteComponent = () => {
   return (
@@ -19,6 +20,7 @@ export const RouteComponent = () => {
 
         {/* Public Routes */}
         <Route path="/test" element={<Test />} />
+        <Route path="/car" element={<CarouselSize />} />
         {/* Public Routes */}
 
         <Route element={<PrivateRoute />}>
