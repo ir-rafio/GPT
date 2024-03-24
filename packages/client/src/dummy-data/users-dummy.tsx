@@ -27,7 +27,7 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71nw5fq2SDL._AC_SY550_.jpg",
     name: "John Lorem Ipsum  190041000",
-    nickname: "Jonny"
+    nickname: "কানা মামা"
   },
   {
     img: "https://m.media-amazon.com/images/I/71nw5fq2SDL._AC_SY550_.jpg",
@@ -37,7 +37,7 @@ const data = [
   {
     img: "https://m.media-amazon.com/images/I/71nw5fq2SDL._AC_SY550_.jpg",
     name: "John Lorem Ipsum  190041000",
-    nickname: "Jonny"
+    nickname: "মুলা বাবা"
   },
   {
     img: "https://m.media-amazon.com/images/I/71nw5fq2SDL._AC_SY550_.jpg",
