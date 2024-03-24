@@ -1,9 +1,7 @@
 .user-manager {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-top: 2rem;
   font-family: sans-serif;
+  align-items: center;
 }
 
 .card-container {
@@ -11,16 +9,16 @@
   flex-wrap: wrap;
   margin-top: 2rem;
   z-index: -2;
+  justify-content: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
   width: 15rem;
   margin: 20px;
-  border: 2px solid #ededed;
+  border: 1px solid #ededed;
   border-radius: 10px;
   padding: 20px;
   cursor: pointer;
@@ -56,10 +54,25 @@
 .search-input {
   padding: 12px 20px;
   border: none;
-  background: #f7f6f6;
   outline: none;
-  margin-right: 20px;
-  border-radius: 5px;
+  border-radius: 1rem;
   position: relative;
   width: 14rem;
+}
+
+:root {
+  --light-background: #f7f6f6;
+  --light-text: #000;
+  --dark-background: #333;
+  --dark-text: #fff;
+}
+
+.search-input.light {
+  background: var(--light-background);
+  color: var(--light-text);
+}
+
+.search-input.dark {
+  background: var(--dark-background);
+  color: var(--dark-text);
 }
