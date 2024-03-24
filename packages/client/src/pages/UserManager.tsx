@@ -1,10 +1,10 @@
 import { SetStateAction, useState } from "react";
 
-import UserList from "./UserList";
-import Card from "./components/Card";
-import "./Users.css";
+import UserList from "@/components/ui/user-grid";
+import Card from "@/components/ui/user-card";
+import "@/css/users.css";
 
-import users from "./exampledata";
+import users from "./Users/exampledata";
 
 function UserManager() {
   // ----------- Input Filter -----------

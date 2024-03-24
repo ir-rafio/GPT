@@ -1,5 +1,5 @@
 import React from "react";
-import "./Users.css";
+import "@/css/users.css";
 
 import { useTheme } from "@/components/theme-provider";
 

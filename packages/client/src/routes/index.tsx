@@ -8,7 +8,7 @@ import { PrivateRoute } from "./privateRoute";
 
 const Home = React.lazy(() => import("@/pages/home"));
 const Test = React.lazy(() => import("@/pages/test"));
-const Users = React.lazy(() => import("@/pages/Users/UserManager"));
+const Users = React.lazy(() => import("@/pages/UserManager"));
 
 export const RouteComponent = () => {
   return (

@@ -1,3 +1,10 @@
+:root {
+  --light-background: #f7f6f6;
+  --light-text: #000;
+  --dark-background: #333;
+  --dark-text: #fff;
+}
+
 .user-manager {
   margin-top: 2rem;
   font-family: sans-serif;
@@ -58,13 +65,6 @@
   border-radius: 1rem;
   position: relative;
   width: 14rem;
-}
-
-:root {
-  --light-background: #f7f6f6;
-  --light-text: #000;
-  --dark-background: #333;
-  --dark-text: #fff;
 }
 
 .search-input.light {
