@@ -1,0 +1,78 @@
+:root {
+  --light-background: #f7f6f6;
+  --light-text: #000;
+  --dark-background: #333;
+  --dark-text: #fff;
+}
+
+.user-manager {
+  margin-top: 2rem;
+  font-family: sans-serif;
+  align-items: center;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  z-index: -2;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  width: 15rem;
+  margin: 20px;
+  border: 1px solid #ededed;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  position: relative; /* Position the card-content relatively */
+}
+
+.card-img {
+  width: 13rem;
+  margin-bottom: 1rem;
+  z-index: -1; /* Position the image behind the text */
+}
+
+.card-text {
+  position: absolute;
+  top: 4rem;
+  color: white;
+  padding: 10px;
+  z-index: 1;
+  text-align: center;
+}
+
+.card-title {
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.search-input {
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  position: relative;
+  width: 14rem;
+}
+
+.search-input.light {
+  background: var(--light-background);
+  color: var(--light-text);
+}
+
+.search-input.dark {
+  background: var(--dark-background);
+  color: var(--dark-text);
+}
