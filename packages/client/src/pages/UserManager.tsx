@@ -4,7 +4,7 @@ import UserList from "@/components/ui/user-grid";
 import Card from "@/components/ui/user-card";
 import "@/css/users.css";
 
-import users from "./Users/exampledata";
+import users from "../dummy-data/users-dummy";
 
 function UserManager() {
   // ----------- Input Filter -----------
