@@ -27,8 +27,8 @@ function CommentSection({ id }: { id: string | undefined }) {
           </Button>
         </div>
         <div className="max-h-80 overflow-y-auto">
-          {comments.map((comment) => (
-            <div>
+          {comments.map((comment, idx) => (
+            <div key={idx}>
               <div className="my-2 border-t border-gray-200"></div>
               User said:
               <div className="m-2">
