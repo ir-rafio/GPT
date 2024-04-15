@@ -1,0 +1,15 @@
+.profile-editor {
+  padding: 12px 20px;
+  border: none;
+  outline: none;
+  border-radius: 1rem;
+  position: relative;
+  align-content: center;
+  width: 14rem;
+}
+
+.edit-profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
