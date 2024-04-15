@@ -15,6 +15,13 @@ export default function Home() {
       setUserData(res.data);
     });
   }, []);
+  console.log(userData);
+
+  if (userData) {
+    console.log("Setting local storage");
+    window.localStorage.setItem("id", userData.metadata.studentId);
+    window.localStorage.setItem("name", userData.metadata.name);
+  }
   return (
     <div>
       {userData ? (
