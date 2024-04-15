@@ -31,7 +31,7 @@ function Nicknames({ id }: { id: string | undefined }) {
   return (
     <>
       <div className="m-2">
-        Nicknames
+        <div className="ml-4">Nicknames</div>
         <div className="max-w-160 m-2 max-h-80 overflow-y-auto">
           {nicknames.map((nickname) => (
             <Card className="m-2 w-96 p-2">
