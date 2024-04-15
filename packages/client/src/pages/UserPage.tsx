@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
-import Nickname from "@/components/ui/nickname";
+import CommentSection from "@/components/ui/comment-section";
+import Nicknames from "@/components/ui/nicknames";
+import UserDetails from "@/components/ui/user-details";
 
 function UserPage() {
   const id = window.location.pathname.split("/").at(-1);
@@ -8,8 +10,11 @@ function UserPage() {
     <>
       <div>
         <Card>
-          <h1>Nicknames</h1>
-          <Nickname id={id} />
+          <div className="flex justify-between">
+            <UserDetails id={id} />
+            <Nicknames id={id} />
+          </div>
+          <CommentSection id={id} />
         </Card>
       </div>
     </>
