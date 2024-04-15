@@ -1,8 +1,19 @@
+import { useState } from "react";
+import { Button } from "./button";
 import { Card } from "./card";
+import { Textarea } from "./textarea";
+
+enum Mode {
+  VIEW,
+  EDITSHIRT,
+  EDITNOTE
+}
 
 function UserDetails({ id }: { id: string | undefined }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
   const name = window.localStorage.getItem("name");
+  const [mode, setMode] = useState(Mode.VIEW);
+  const [note, setNote] = useState("");
 
   return (
     <>
@@ -20,18 +31,41 @@ function UserDetails({ id }: { id: string | undefined }) {
           <h2 className=" m-2 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
             {id}
           </h2>
-          <div className="m-2">tshirt size</div>
+          {mode === Mode.EDITSHIRT ? (
+            <div className="m-2">edit tshirt size</div>
+          ) : (
+            <div className="m-2">view tshirt size</div>
+          )}
+          // TODO: make tshirt editable
         </div>
-        <div>
-          <Card className="m-2 flex-grow">
-            <p className="text-muted-foreground m-4 max-h-40 flex-wrap overflow-y-auto text-xl">
-              valo kisu dish vai valo kisu dish vai valo kisu dish vai valo kisu
-              dish vai valo kisu dish vai valo kisu dish vai valo kisu dish vai
-              valo kisu dish vai valo kisu dish vai valo kisu dish vai valo kisu
-              dish vai valo kisu dish vai valo kisu dish vai valo kisu dish vai
-              valo kisu dish vai valo kisu dish vai valo kisu dish vai
-            </p>
-          </Card>
+        <div className="flex">
+          {mode === Mode.EDITNOTE ? (
+            <div className="flex flex-row">
+              <Textarea
+                className="m-4 max-h-40 max-w-5xl flex-wrap overflow-y-auto text-xl"
+                placeholder="Edit note"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+              />
+              <div className="m-4 flex flex-col justify-end">
+                <Button variant="default" onClick={() => setMode(Mode.VIEW)}>
+                  Save
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <Card
+              className="m-2 max-h-40 max-w-5xl overflow-x-auto text-xl"
+              onClick={() => {
+                setMode(Mode.EDITNOTE);
+              }}
+            >
+              <p className="text-muted-foreground m-4">
+                {note == "" ? "Add note" : note}
+              </p>
+              // TODO: make it more good // TODO: connectto backendo
+            </Card>
+          )}
         </div>
       </div>
     </>
