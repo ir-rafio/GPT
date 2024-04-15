@@ -5,6 +5,7 @@ import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/p
 
 import { getSuperTokensRoutesForReactRouterDom } from "supertokens-auth-react/ui";
 import { PrivateRoute } from "./privateRoute";
+import UserPage from "@/pages/UserPage";
 
 const Home = React.lazy(() => import("@/pages/home"));
 const Test = React.lazy(() => import("@/pages/test"));
@@ -21,6 +22,7 @@ export const RouteComponent = () => {
         {/* Public Routes */}
         <Route path="/test" element={<Test />} />
         <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<UserPage />} />
         {/* Public Routes */}
 
         <Route element={<PrivateRoute />}>
