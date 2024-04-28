@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
 import * as reactRouterDom from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { ThirdPartyPreBuiltUI } from "supertokens-auth-react/recipe/thirdparty/prebuiltui";
 
+import Me from "@/pages/Me";
+import UserPage from "@/pages/UserPage";
 import { getSuperTokensRoutesForReactRouterDom } from "supertokens-auth-react/ui";
 import { PrivateRoute } from "./privateRoute";
-import UserPage from "@/pages/UserPage";
-import Me from "@/pages/Me";
 
 const Home = React.lazy(() => import("@/pages/home"));
 const Test = React.lazy(() => import("@/pages/test"));

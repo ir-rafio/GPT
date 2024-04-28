@@ -15,21 +15,21 @@ export default function Home() {
       setUserData(res.data);
     });
   }, []);
-  console.log(userData);
 
   if (userData) {
-    console.log("Setting local storage");
     window.localStorage.setItem("id", userData.metadata.studentId);
     window.localStorage.setItem("name", userData.metadata.name);
   }
   return (
-    <div>
+    <div className="m-6 mt-12 flex justify-center">
       {userData ? (
-        <div>
-          Hello {userData.metadata.name}. ID: {userData.metadata.studentId}
+        <div className="text-center">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            <code>Hello, {userData.metadata.name}</code>
+          </h1>
         </div>
       ) : (
-        <div>Loading....</div>
+        <div className="animate-pulse">Loading....</div>
       )}
     </div>
   );
