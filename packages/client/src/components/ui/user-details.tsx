@@ -17,7 +17,7 @@ function UserDetails({ id }: { id: string | undefined }) {
 
   return (
     <>
-      <div className="m-2 flex flex-col justify-between">
+      <div className="m-6 ml-20 flex flex-col justify-between">
         <div>
           {isMe ? (
             <h1 className="m-2 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">

@@ -20,17 +20,12 @@ export const RouteComponent = () => {
           ThirdPartyPreBuiltUI
         ])}
 
-        {/* Public Routes */}
-        <Route path="/test" element={<Test />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="/users/:id" element={<UserPage />} />
-        <Route path="/users/me" element={<Me />} />
-        {/* Public Routes */}
-
         <Route element={<PrivateRoute />}>
-          {/* Private Routes */}
           <Route path="/" element={<Home />} />
-          {/* Private Routes */}
+          <Route path="/test" element={<Test />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<UserPage />} />
+          <Route path="/users/me" element={<Me />} />
         </Route>
       </Routes>
     </Suspense>

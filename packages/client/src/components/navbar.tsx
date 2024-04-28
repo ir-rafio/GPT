@@ -10,7 +10,11 @@ export const NavBar = () => {
 
   return (
     <div className="bg-accent flex h-16 w-full items-center gap-4 p-4">
-      <Link to="/">GPT</Link>
+      <Link to="/">
+        <code className="text-red-500">G</code>oru
+        <code className="text-red-500">P</code>arty
+        <code className="text-red-500">T</code>shirt
+      </Link>
       <div className="flex-center ml-auto gap-4">
         <ThemeToggle />
         <AuthButton isSignedIn={isSignedIn} />
