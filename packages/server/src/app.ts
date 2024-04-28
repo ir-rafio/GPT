@@ -15,6 +15,7 @@ import {
 import { getDirname } from "./utils/dir";
 import path from "path";
 import { userRouter } from "./modules/user/user.route";
+import { neoStudentRouter } from "./modules/v2/student/student.route";
 
 const app = express();
 
@@ -37,6 +38,10 @@ app.use("/api/nickname", nicknameRouter);
 app.use("/api/vote", voteRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/user", userRouter);
+
+// v2
+app.use("/api/health", (_, res) => res.send("OK"));
+app.use("/api/v2/student", neoStudentRouter);
 
 app.use(supertokensErrorHandler());
 

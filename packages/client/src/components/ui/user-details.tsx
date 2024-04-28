@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "./button";
 import { Card } from "./card";
 import { Textarea } from "./textarea";
+import { axiosClient } from "@/config/axios";
 
 enum Mode {
   VIEW,
@@ -11,15 +12,28 @@ enum Mode {
 
 function UserDetails({ id }: { id: string | undefined }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
-  const name = window.localStorage.getItem("name");
+  const [name, setName] = useState("def");
   const [mode, setMode] = useState(Mode.VIEW);
   const [note, setNote] = useState("");
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    axiosClient.get(`/v2/student/me/${id}/get`).then((res) => {
+      console.log(res.data);
+      setName(res.data.student.name);
+
+      setIsLoaded(true);
+    });
+  }, []);
+
+  console.log(name);
 
   return (
     <>
       <div className="m-6 ml-20 flex flex-col justify-between">
         <div>
-          {isMe ? (
+          {isMe || isLoaded ? (
             <h1 className="m-2 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               {name}
             </h1>

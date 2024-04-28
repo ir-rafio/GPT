@@ -8,11 +8,16 @@ datasource db {
 }
 
 model Student {
-  id         Int        @id
+  id         Int    @id
   name       String
   oauthToken String
-  tshirtSize String
-  note       String
+}
+
+model StudentData {
+  id         Int        @unique
+  name       String
+  tshirtSize String?
+  note       String?
   nicknames  Nickname[]
   votes      Vote[]
   comments   Comment[]
@@ -20,37 +25,41 @@ model Student {
 }
 
 model Nickname {
-  name     String
-  sender   Int
-  receiver Int
-  student  Student @relation(fields: [receiver], references: [id])
-  vote     Vote[]
+  name          String
+  sender        Int
+  receiver      Int
+  vote          Vote[]
+  StudentData   StudentData? @relation(fields: [studentDataId], references: [id])
+  studentDataId Int?
 
   @@id([name, receiver])
 }
 
 model Vote {
-  name      String
-  voter     Int
-  receiver  Int
-  updatedAt DateTime @updatedAt
-  nickname  Nickname @relation(fields: [name, receiver], references: [name, receiver])
-  student   Student  @relation(fields: [voter], references: [id])
+  name          String
+  voter         Int
+  receiver      Int
+  updatedAt     DateTime     @updatedAt
+  nickname      Nickname     @relation(fields: [name, receiver], references: [name, receiver])
+  StudentData   StudentData? @relation(fields: [studentDataId], references: [id])
+  studentDataId Int?
 
   @@id([voter, receiver])
 }
 
 model Comment {
-  id        String   @id @default(uuid())
-  text      String
-  sender    Int
-  receiver  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  student   Student  @relation(fields: [receiver], references: [id])
+  id            String       @id @default(uuid())
+  text          String
+  sender        Int
+  receiver      Int
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  StudentData   StudentData? @relation(fields: [studentDataId], references: [id])
+  studentDataId Int?
 }
 
 model Nerd {
-  id      Int     @id
-  student Student @relation(fields: [id], references: [id])
+  id            Int          @id
+  StudentData   StudentData? @relation(fields: [studentDataId], references: [id])
+  studentDataId Int?
 }

@@ -29,7 +29,6 @@ function Nicknames({ id }: { id: string | undefined }) {
   ];
   const isMe = window.location.pathname.split("/").at(-1) === "me";
 
-  console.log("Fetching nicknames for user", id);
   return (
     <>
       <div className="m-2 mr-24 mt-8">
