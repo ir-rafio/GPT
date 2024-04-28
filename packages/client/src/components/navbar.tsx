@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSessionContext } from "supertokens-auth-react/recipe/session";
 import { signOut } from "supertokens-web-js/recipe/session";
 import { ThemeToggle } from "./theme-toggle";
@@ -21,12 +21,14 @@ export const NavBar = () => {
 const AuthButton = ({ isSignedIn }: { isSignedIn: boolean }) => {
   const location = useLocation();
   if (location.pathname === "/auth") return null;
+  const navigate = useNavigate();
 
   if (isSignedIn) {
     return (
       <Button
         onClick={async () => {
           await signOut();
+          navigate("/");
         }}
       >
         Logout

@@ -1,5 +1,6 @@
 import { axiosClient } from "@/config/axios";
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 interface UserData {
   metadata: {
@@ -19,6 +20,7 @@ export default function Home() {
   if (userData) {
     window.localStorage.setItem("id", userData.metadata.studentId);
     window.localStorage.setItem("name", userData.metadata.name);
+    return <Navigate to="/users/me" replace />;
   }
   return (
     <div className="m-6 mt-12 flex justify-center">
