@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "./button";
-import { FaPlus, FaTrash } from "react-icons/fa6";
+import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 import { axiosClient } from "@/config/axios";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -35,7 +35,7 @@ function Nicknames({
             <Button
               variant="default"
               size="sm"
-              className="ml-2"
+              className="ml-2 rounded-lg"
               onClick={() => {
                 if (nickname === "") {
                   toast("Nickname cannot be empty", {});
@@ -85,37 +85,61 @@ function Nicknames({
                   {nickname.votes.length === 0 &&
                     nickname.sender ===
                       Number(window.localStorage.getItem("id")) && (
-                      <Button variant="destructive" size="sm" className="mr-2">
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        className="mr-2 rounded-full"
+                      >
                         <FaTrash />
                       </Button>
                     )}
-                  <Button
-                    variant="outline"
-                    className="bg-blue-600 text-white"
-                    size="sm"
-                    onClick={() => {
-                      const data = {
-                        vote: {
-                          name: nickname.name,
-                          voter: Number(window.localStorage.getItem("id")),
-                          receiver: nickname.receiver
-                        },
-                        myId: Number(window.localStorage.getItem("id"))
-                      };
 
-                      axiosClient
-                        .put(`/vote/add`, { data })
-                        .then((res) => {
-                          toast(res.data.message, {});
-                          setIsLoaded(false);
-                        })
-                        .catch((error) => {
-                          console.error("Error occurred while voting:", error);
-                        });
-                    }}
-                  >
-                    <FaPlus />
-                  </Button>
+                  {nickname.votes.some(
+                    (vote: any) =>
+                      vote.voter === Number(window.localStorage.getItem("id"))
+                  ) ? (
+                    <Button
+                      variant="destructive"
+                      className="rounded-full"
+                      size="sm"
+                      onClick={() => {
+                        console.log("minus chapse");
+                      }}
+                    >
+                      <FaMinus />
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      className="rounded-full bg-blue-500 text-white"
+                      size="sm"
+                      onClick={() => {
+                        const data = {
+                          vote: {
+                            name: nickname.name,
+                            voter: Number(window.localStorage.getItem("id")),
+                            receiver: nickname.receiver
+                          },
+                          myId: Number(window.localStorage.getItem("id"))
+                        };
+
+                        axiosClient
+                          .put(`/vote/add`, { data })
+                          .then((res) => {
+                            toast(res.data.message, {});
+                            setIsLoaded(false);
+                          })
+                          .catch((error) => {
+                            console.error(
+                              "Error occurred while voting:",
+                              error
+                            );
+                          });
+                      }}
+                    >
+                      <FaPlus />
+                    </Button>
+                  )}
                 </div>
               </div>
             </Card>
