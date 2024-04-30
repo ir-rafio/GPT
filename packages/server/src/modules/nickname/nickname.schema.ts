@@ -14,7 +14,7 @@ export const nicknameSchema = {
   }),
 
   deleteNicknameSchema: z.object({
-    query: z.object({
+    body: z.object({
       data: z.object({
         myId: z.number(),
         name: z.string(),
@@ -28,6 +28,6 @@ export type CreateNicknameBody = z.infer<
   typeof nicknameSchema.createNicknameSchema
 >["body"];
 
-export type DeleteNicknameQuery = z.infer<
+export type DeleteNicknameBody = z.infer<
   typeof nicknameSchema.deleteNicknameSchema
->["query"];
+>["body"];

@@ -3,7 +3,7 @@ import {
   handleClientError,
   handleLibraryError
 } from "../../utils/error/error.util";
-import { CreateNicknameBody, DeleteNicknameQuery } from "./nickname.schema";
+import { CreateNicknameBody, DeleteNicknameBody } from "./nickname.schema";
 import { nicknameService } from "./nickname.service";
 
 export const nicknameController = {
@@ -29,10 +29,11 @@ export const nicknameController = {
   },
 
   deleteNickname: async (
-    req: Request<{}, {}, {}, DeleteNicknameQuery>,
+    req: Request<{}, {}, DeleteNicknameBody>,
     res: Response
   ) => {
-    const { data } = req.query;
+    console.log(req.body);
+    const { data } = req.body;
     const { myId, name, receiver } = data;
 
     try {

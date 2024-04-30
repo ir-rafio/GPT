@@ -89,6 +89,26 @@ function Nicknames({
                         variant="destructive"
                         size="sm"
                         className="mr-2 rounded-full"
+                        onClick={() => {
+                          const data = {
+                            myId: Number(window.localStorage.getItem("id")),
+                            name: nickname.name,
+                            receiver: nickname.receiver
+                          };
+
+                          axiosClient
+                            .delete(`/nickname/delete`, { data: { data } })
+                            .then((res) => {
+                              toast(res.data.message, {});
+                              setIsLoaded(false);
+                            })
+                            .catch((error) => {
+                              console.error(
+                                "Error occurred while deleting nickname:",
+                                error
+                              );
+                            });
+                        }}
                       >
                         <FaTrash />
                       </Button>
