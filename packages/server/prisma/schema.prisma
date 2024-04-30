@@ -10,9 +10,8 @@ datasource db {
 model Student {
   id         Int        @id
   name       String
-  oauthToken String
-  tshirtSize String
-  note       String
+  tshirtSize String     @default("L")
+  note       String     @default("")
   nicknames  Nickname[]
   votes      Vote[]
   comments   Comment[]

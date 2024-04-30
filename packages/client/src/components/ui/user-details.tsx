@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { axiosClient } from "@/config/axios";
+import { useEffect, useState } from "react";
 import { Button } from "./button";
 import { Card } from "./card";
 import { Textarea } from "./textarea";
@@ -11,21 +12,29 @@ enum Mode {
 
 function UserDetails({ id }: { id: string | undefined }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
-  const name = window.localStorage.getItem("name");
+  const [name, setName] = useState(window.localStorage.getItem("name"));
   const [mode, setMode] = useState(Mode.VIEW);
   const [note, setNote] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    axiosClient.get(`/student/me/${id}/get`).then((res) => {
+      setName(res.data.student.name);
+      setIsLoaded(true);
+    });
+  }, []);
 
   return (
     <>
       <div className="m-6 ml-20 flex flex-col justify-between">
         <div>
-          {isMe ? (
+          {isMe && isLoaded ? (
             <h1 className="m-2 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               {name}
             </h1>
           ) : (
             <h1 className="m-2 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-              Name Fetch kora lagbe
+              {name}
             </h1>
           )}
           <h2 className=" m-2 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">

@@ -19,13 +19,13 @@ export const RouteComponent = () => {
         {getSuperTokensRoutesForReactRouterDom(reactRouterDom, [
           ThirdPartyPreBuiltUI
         ])}
+        <Route path="/test" element={<Test />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<UserPage />} />
+        <Route path="/users/me" element={<Me />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/users/:id" element={<UserPage />} />
-          <Route path="/users/me" element={<Me />} />
         </Route>
       </Routes>
     </Suspense>
