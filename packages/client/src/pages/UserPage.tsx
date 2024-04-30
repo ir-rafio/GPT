@@ -18,7 +18,6 @@ function UserPage() {
 
   useEffect(() => {
     axiosClient.get(`/student/classmate/${id}/get`).then((res) => {
-      console.log("res", res.data);
       const { student } = res.data;
       setStudent(student);
       setIsLoaded(true);

@@ -3,6 +3,7 @@ import { Button } from "./button";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { axiosClient } from "@/config/axios";
 import { toast } from "sonner";
+import { useState } from "react";
 
 function Nicknames({
   nicknames,
@@ -12,6 +13,7 @@ function Nicknames({
   setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
+  const [nickname, setNickname] = useState("");
 
   return (
     <>
@@ -26,9 +28,43 @@ function Nicknames({
             <input
               type="text"
               placeholder="Add a nickname..."
+              value={nickname}
               className="rounded-md border border-gray-200 p-2"
+              onChange={(e) => setNickname(e.target.value)}
             />
-            <Button variant="default" size="sm" className="ml-2">
+            <Button
+              variant="default"
+              size="sm"
+              className="ml-2"
+              onClick={() => {
+                if (nickname === "") {
+                  toast("Nickname cannot be empty", {});
+                  return;
+                }
+                axiosClient
+                  .post(`/nickname/create`, {
+                    data: {
+                      nickname: {
+                        name: nickname,
+                        sender: Number(window.localStorage.getItem("id")),
+                        receiver: Number(
+                          window.location.pathname.split("/").at(-1)
+                        )
+                      }
+                    }
+                  })
+                  .then((res) => {
+                    toast("Nickname successfully added", {});
+                    setIsLoaded(false);
+                  })
+                  .catch((error) => {
+                    console.error(
+                      "Error occurred while adding nickname:",
+                      error
+                    );
+                  });
+              }}
+            >
               <FaPlus />
             </Button>
           </div>
@@ -46,11 +82,14 @@ function Nicknames({
                   </div>
                 </div>
                 <div>
-                  <Button variant="destructive" size="sm" className="mr-2">
-                    <FaTrash />
-                  </Button>
+                  {nickname.votes.length === 0 && (
+                    <Button variant="destructive" size="sm" className="mr-2">
+                      <FaTrash />
+                    </Button>
+                  )}
                   <Button
                     variant="outline"
+                    className="bg-blue-600 text-white"
                     size="sm"
                     onClick={() => {
                       const data = {
@@ -62,11 +101,9 @@ function Nicknames({
                         myId: Number(window.localStorage.getItem("id"))
                       };
 
-                      console.log("data", data);
                       axiosClient
                         .put(`/vote/add`, { data })
                         .then((res) => {
-                          console.log("asdasd", res);
                           toast(res.data.message, {});
                           setIsLoaded(false);
                         })
@@ -75,7 +112,7 @@ function Nicknames({
                         });
                     }}
                   >
-                    Vote
+                    <FaPlus />
                   </Button>
                 </div>
               </div>
