@@ -7,6 +7,7 @@ import {
   CarouselPrevious
 } from "@/components/ui/carousel";
 import { axiosClient } from "@/config/axios";
+import { cse1, cse2, swe } from "@/data/students";
 import { useEffect, useState } from "react";
 
 interface UserData {
@@ -24,13 +25,6 @@ export default function Home() {
     });
   }, []);
 
-  // <Card>
-  //   <CardContent className="flex items-center justify-center p-4">
-  //     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-  //       CSE 1
-  //     </h3>
-  //   </CardContent>
-  // </Card>
   return (
     <div className="m-6 flex justify-center">
       {userData ? (
@@ -48,13 +42,51 @@ export default function Home() {
                   <div className="space-y-4 p-1">
                     <Card>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
-                        {Array.from({ length: 42 }).map((_, index) => (
-                          <Card key={index}>
+                        {cse1.map((student, index) => (
+                          <Card key={index} className="hover:drop-shadow-lg">
                             <CardHeader className="p-4 pb-1 font-semibold">
-                              190041115
+                              {student.id}
                             </CardHeader>
                             <CardContent className="p-4 pt-1">
-                              <code>Md. Shahnewaz Siddique</code>
+                              <code>{student.name}</code>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+
+                <CarouselItem key={2}>
+                  <div className="space-y-4 p-1">
+                    <Card>
+                      <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
+                        {cse2.map((student, index) => (
+                          <Card key={index} className="hover:drop-shadow-lg">
+                            <CardHeader className="p-4 pb-1 font-semibold">
+                              {student.id}
+                            </CardHeader>
+                            <CardContent className="p-4 pt-1">
+                              <code>{student.name}</code>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+
+                <CarouselItem key={3}>
+                  <div className="space-y-4 p-1">
+                    <Card>
+                      <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
+                        {swe.map((student, index) => (
+                          <Card key={index} className="hover:drop-shadow-lg">
+                            <CardHeader className="p-4 pb-1 font-semibold">
+                              {student.id}
+                            </CardHeader>
+                            <CardContent className="p-4 pt-1">
+                              <code>{student.name}</code>
                             </CardContent>
                           </Card>
                         ))}
@@ -63,8 +95,8 @@ export default function Home() {
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              <CarouselPrevious className="h-12 w-12" />
+              <CarouselNext className="h-12 w-12" />
             </Carousel>
           </div>
         </div>
