@@ -70,7 +70,14 @@ export const studentService = {
   getClassmate: async (studentId: number): Promise<Classmate | null> => {
     const student = await databaseClient.student.findUnique({
       where: { id: studentId },
-      include: { nicknames: true, comments: true }
+      include: {
+        nicknames: {
+          include: {
+            votes: true
+          }
+        },
+        comments: true
+      }
     });
 
     if (!student) return null;

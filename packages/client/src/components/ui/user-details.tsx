@@ -1,5 +1,4 @@
-import { axiosClient } from "@/config/axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "./button";
 import { Card } from "./card";
 import { Textarea } from "./textarea";

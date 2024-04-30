@@ -23,7 +23,7 @@ model Nickname {
   sender   Int
   receiver Int
   student  Student @relation(fields: [receiver], references: [id])
-  vote     Vote[]
+  votes    Vote[]
 
   @@id([name, receiver])
 }

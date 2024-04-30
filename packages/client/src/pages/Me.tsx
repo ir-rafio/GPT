@@ -5,6 +5,8 @@ import UserDetails from "@/components/ui/user-details";
 function Me() {
   const id = window.localStorage.getItem("id") || undefined;
 
+  return <div>Mepage</div>;
+
   return (
     <>
       <div>

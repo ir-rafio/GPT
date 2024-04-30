@@ -1,10 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "./button";
 import { FaPlus, FaTrash } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { axiosClient } from "@/config/axios";
+import { useState } from "react";
 
 function Nicknames({ nicknames }: { nicknames: any }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
+  const [nicknameList, setNicknameList] = useState(nicknames);
 
   return (
     <>
@@ -27,7 +29,7 @@ function Nicknames({ nicknames }: { nicknames: any }) {
           </div>
         )}
         <div className="max-w-160 m-2 max-h-80 overflow-y-auto">
-          {nicknames.map((nickname: any, idx: any) => (
+          {nicknameList.map((nickname: any, idx: any) => (
             <Card key={idx} className="m-2 w-96 p-2">
               <div className="flex items-center justify-between space-x-2">
                 <div>
@@ -35,14 +37,39 @@ function Nicknames({ nicknames }: { nicknames: any }) {
                     <code>{nickname.name}</code>
                   </div>
                   <div className="text-xs text-gray-500">
-                    Votes: {0} // TODO: fetch votes
+                    Votes: {nickname.votes.length}
                   </div>
                 </div>
                 <div>
                   <Button variant="destructive" size="sm" className="mr-2">
                     <FaTrash />
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const data = {
+                        vote: {
+                          name: nickname.name,
+                          voter: Number(window.localStorage.getItem("id")),
+                          receiver: nickname.receiver
+                        },
+                        myId: Number(window.localStorage.getItem("id"))
+                      };
+
+                      console.log("data", data);
+                      axiosClient
+                        .put(`/vote/add`, { data })
+                        .then((res) => {
+                          console.log("Vote successful");
+                          console.log("nickname", nickname);
+                          window.location.reload(); // TODO: maybe not reload the page?
+                        })
+                        .catch((error) => {
+                          console.error("Error occurred while voting:", error);
+                        });
+                    }}
+                  >
                     Vote
                   </Button>
                 </div>
