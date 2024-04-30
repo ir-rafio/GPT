@@ -9,6 +9,7 @@ import {
 import { axiosClient } from "@/config/axios";
 import { cse1, cse2, swe } from "@/data/students";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface UserData {
   metadata: {
@@ -24,6 +25,8 @@ export default function Home() {
       setUserData(res.data);
     });
   }, []);
+
+  const navigate = useNavigate();
 
   return (
     <div className="m-6 flex justify-center">
@@ -43,7 +46,11 @@ export default function Home() {
                     <Card>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {cse1.map((student, index) => (
-                          <Card key={index} className="hover:drop-shadow-lg">
+                          <Card
+                            key={index}
+                            className="hover:drop-shadow-lg"
+                            onClick={() => navigate(`/users/${student.id}`)}
+                          >
                             <CardHeader className="p-4 pb-1 font-semibold">
                               {student.id}
                             </CardHeader>
@@ -62,7 +69,11 @@ export default function Home() {
                     <Card>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {cse2.map((student, index) => (
-                          <Card key={index} className="hover:drop-shadow-lg">
+                          <Card
+                            key={index}
+                            className="hover:drop-shadow-lg"
+                            onClick={() => navigate(`/users/${student.id}`)}
+                          >
                             <CardHeader className="p-4 pb-1 font-semibold">
                               {student.id}
                             </CardHeader>
@@ -81,7 +92,11 @@ export default function Home() {
                     <Card>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {swe.map((student, index) => (
-                          <Card key={index} className="hover:drop-shadow-lg">
+                          <Card
+                            key={index}
+                            className="hover:drop-shadow-lg"
+                            onClick={() => navigate(`/users/${student.id}`)}
+                          >
                             <CardHeader className="p-4 pb-1 font-semibold">
                               {student.id}
                             </CardHeader>
