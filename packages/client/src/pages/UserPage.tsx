@@ -36,7 +36,10 @@ function UserPage() {
                 nicknames={student.nicknames}
               />
             </div>
-            <CommentSection comments={student.comments} />
+            <CommentSection
+              setIsLoaded={setIsLoaded}
+              comments={student.comments}
+            />
           </Card>
         )}
       </div>
