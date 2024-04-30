@@ -44,8 +44,8 @@ export default function Home() {
             </h1>
           </div>
 
-          <div className="flex h-full w-full items-center justify-center">
-            <Carousel className="h-full w-full">
+          <div className="flex items-center justify-center">
+            <Carousel className="h-full w-11/12">
               <CarouselContent>
                 <CarouselItem key={1}>
                   <div className="space-y-4 p-1">
@@ -116,8 +116,8 @@ export default function Home() {
                   </div>
                 </CarouselItem>
               </CarouselContent>
-              <CarouselPrevious className="h-12 w-12" />
-              <CarouselNext className="h-12 w-12" />
+              <CarouselPrevious className="h-12 w-12 bg-sky-900 text-white" />
+              <CarouselNext className="h-12 w-12 bg-sky-900 text-white" />
             </Carousel>
           </div>
         </div>
