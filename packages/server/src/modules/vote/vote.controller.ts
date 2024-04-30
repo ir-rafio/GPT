@@ -29,6 +29,8 @@ export const voteController = {
 
     if (!newVote) return handleClientError(500, "Could not add vote.", res);
 
-    return res.status(200).json({ vote: newVote });
+    return res
+      .status(200)
+      .json({ vote: newVote, message: "Successfully added vote" });
   }
 };

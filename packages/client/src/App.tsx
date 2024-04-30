@@ -3,6 +3,7 @@ import { SuperTokensWrapper } from "supertokens-auth-react";
 import { NavBar } from "./components/navbar";
 import { ThemeProvider } from "./components/theme-provider";
 import { RouteComponent } from "./routes";
+import { Toaster } from "./components/ui/sonner";
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
         <BrowserRouter>
           <NavBar />
           <RouteComponent />
+          <Toaster />
         </BrowserRouter>
       </ThemeProvider>
     </SuperTokensWrapper>

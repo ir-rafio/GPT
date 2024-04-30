@@ -23,9 +23,7 @@ function UserPage() {
       setStudent(student);
       setIsLoaded(true);
     });
-  }, []);
-
-  console.log("student", student);
+  }, [isLoaded]);
 
   return (
     <>
@@ -34,7 +32,10 @@ function UserPage() {
           <Card>
             <div className="flex justify-between">
               <UserDetails id={id} student={student} />
-              <Nicknames nicknames={student.nicknames} />
+              <Nicknames
+                setIsLoaded={setIsLoaded}
+                nicknames={student.nicknames}
+              />
             </div>
             <CommentSection id={id} />
           </Card>

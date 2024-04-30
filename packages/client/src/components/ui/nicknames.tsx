@@ -2,11 +2,16 @@ import { Card } from "@/components/ui/card";
 import { Button } from "./button";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { axiosClient } from "@/config/axios";
-import { useState } from "react";
+import { toast } from "sonner";
 
-function Nicknames({ nicknames }: { nicknames: any }) {
+function Nicknames({
+  nicknames,
+  setIsLoaded
+}: {
+  nicknames: any;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
-  const [nicknameList, setNicknameList] = useState(nicknames);
 
   return (
     <>
@@ -29,7 +34,7 @@ function Nicknames({ nicknames }: { nicknames: any }) {
           </div>
         )}
         <div className="max-w-160 m-2 max-h-80 overflow-y-auto">
-          {nicknameList.map((nickname: any, idx: any) => (
+          {nicknames.map((nickname: any, idx: any) => (
             <Card key={idx} className="m-2 w-96 p-2">
               <div className="flex items-center justify-between space-x-2">
                 <div>
@@ -61,9 +66,9 @@ function Nicknames({ nicknames }: { nicknames: any }) {
                       axiosClient
                         .put(`/vote/add`, { data })
                         .then((res) => {
-                          console.log("Vote successful");
-                          console.log("nickname", nickname);
-                          window.location.reload(); // TODO: maybe not reload the page?
+                          console.log("asdasd", res);
+                          toast(res.data.message, {});
+                          setIsLoaded(false);
                         })
                         .catch((error) => {
                           console.error("Error occurred while voting:", error);
