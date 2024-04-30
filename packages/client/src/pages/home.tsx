@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -24,6 +24,13 @@ export default function Home() {
     });
   }, []);
 
+  // <Card>
+  //   <CardContent className="flex items-center justify-center p-4">
+  //     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+  //       CSE 1
+  //     </h3>
+  //   </CardContent>
+  // </Card>
   return (
     <div className="m-6 flex justify-center">
       {userData ? (
@@ -38,30 +45,19 @@ export default function Home() {
             <Carousel className="h-full w-full">
               <CarouselContent>
                 <CarouselItem key={1}>
-                  <div className="p-1">
+                  <div className="space-y-4 p-1">
                     <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-4xl font-semibold">{100}</span>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-
-                <CarouselItem key={2}>
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-4xl font-semibold">{100}</span>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-
-                <CarouselItem key={3}>
-                  <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-4xl font-semibold">{100}</span>
+                      <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
+                        {Array.from({ length: 42 }).map((_, index) => (
+                          <Card key={index}>
+                            <CardHeader className="p-4 pb-1 font-semibold">
+                              190041115
+                            </CardHeader>
+                            <CardContent className="p-4 pt-1">
+                              <code>Md. Shahnewaz Siddique</code>
+                            </CardContent>
+                          </Card>
+                        ))}
                       </CardContent>
                     </Card>
                   </div>
@@ -73,7 +69,7 @@ export default function Home() {
           </div>
         </div>
       ) : (
-        <div className="animate-pulse text-xl">Loading....</div>
+        <div className="animate-bounce text-xl">Loading....</div>
       )}
     </div>
   );
