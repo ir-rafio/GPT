@@ -10,25 +10,23 @@ enum Mode {
   EDITNOTE
 }
 
-function UserDetails({ id }: { id: string | undefined }) {
+function UserDetails({
+  id,
+  student
+}: {
+  id: string | undefined;
+  student: any;
+}) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
-  const [name, setName] = useState(window.localStorage.getItem("name"));
   const [mode, setMode] = useState(Mode.VIEW);
-  const [note, setNote] = useState("");
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    axiosClient.get(`/student/me/${id}/get`).then((res) => {
-      setName(res.data.student.name);
-      setIsLoaded(true);
-    });
-  }, []);
+  const { name, tshirtSize, note } = student;
+  const [displayNote, setDisplayNote] = useState(note);
 
   return (
     <>
       <div className="m-6 ml-20 flex flex-col justify-between">
         <div>
-          {isMe && isLoaded ? (
+          {isMe ? (
             <h1 className="m-2 scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               {name}
             </h1>
@@ -43,7 +41,7 @@ function UserDetails({ id }: { id: string | undefined }) {
           {mode === Mode.EDITSHIRT ? (
             <div className="m-2">edit tshirt size</div>
           ) : (
-            <div className="m-2">view tshirt size</div>
+            <div className="m-2">Tshirt size: {tshirtSize}</div>
           )}
           // TODO: make tshirt editable
         </div>
@@ -53,11 +51,17 @@ function UserDetails({ id }: { id: string | undefined }) {
               <Textarea
                 className="m-4 max-h-40 max-w-5xl flex-wrap overflow-y-auto text-xl"
                 placeholder="Edit note"
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
+                value={displayNote}
+                onChange={(e) => setDisplayNote(e.target.value)}
               />
               <div className="m-4 flex flex-col justify-end">
-                <Button variant="default" onClick={() => setMode(Mode.VIEW)}>
+                <Button
+                  variant="default"
+                  onClick={() => {
+                    setMode(Mode.VIEW);
+                    // TODO: call backend to update note and display change
+                  }}
+                >
                   Save
                 </Button>
               </div>
@@ -72,7 +76,6 @@ function UserDetails({ id }: { id: string | undefined }) {
               <p className="text-muted-foreground m-4">
                 {note == "" ? "Add note" : note}
               </p>
-              // TODO: make it more good // TODO: connectto backendo
             </Card>
           )}
         </div>

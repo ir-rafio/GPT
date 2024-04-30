@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import CommentSection from "@/components/ui/comment-section";
 import Nicknames from "@/components/ui/nicknames";
 import UserDetails from "@/components/ui/user-details";
+import { axiosClient } from "@/config/axios";
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 function UserPage() {
@@ -11,16 +13,32 @@ function UserPage() {
     return <Navigate to="/users/me" replace />;
   }
 
+  const [student, setStudent] = useState<any>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    axiosClient.get(`/student/classmate/${id}/get`).then((res) => {
+      console.log("res", res.data);
+      const { student } = res.data;
+      setStudent(student);
+      setIsLoaded(true);
+    });
+  }, []);
+
+  console.log("student", student);
+
   return (
     <>
       <div>
-        <Card>
-          <div className="flex justify-between">
-            <UserDetails id={id} />
-            <Nicknames id={id} />
-          </div>
-          <CommentSection id={id} />
-        </Card>
+        {isLoaded && (
+          <Card>
+            <div className="flex justify-between">
+              <UserDetails id={id} student={student} />
+              <Nicknames nicknames={student.nicknames} />
+            </div>
+            <CommentSection id={id} />
+          </Card>
+        )}
       </div>
     </>
   );

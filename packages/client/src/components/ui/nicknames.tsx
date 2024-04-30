@@ -1,35 +1,11 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "./button";
 import { FaPlus, FaTrash } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
-function Nicknames({ id }: { id: string | undefined }) {
-  // fetch this data from the server
-  const nicknames = [
-    "Polo",
-    "Lili",
-    "Mimi",
-    "Kiki",
-    "Polo",
-    "Lili",
-    "Mimi",
-    "Kiki",
-    "Polo",
-    "Lili",
-    "Mimi",
-    "Kiki",
-    "Polo",
-    "Lili",
-    "Mimi",
-    "Kiki",
-    "Polo",
-    "Lili",
-    "Mimi",
-    "Kiki",
-    "বাংলাদেশ"
-  ];
+function Nicknames({ nicknames }: { nicknames: any }) {
   const isMe = window.location.pathname.split("/").at(-1) === "me";
 
-  console.log("Fetching nicknames for user", id);
   return (
     <>
       <div className="m-2 mr-24 mt-8">
@@ -51,12 +27,12 @@ function Nicknames({ id }: { id: string | undefined }) {
           </div>
         )}
         <div className="max-w-160 m-2 max-h-80 overflow-y-auto">
-          {nicknames.map((nickname, idx) => (
+          {nicknames.map((nickname: any, idx: any) => (
             <Card key={idx} className="m-2 w-96 p-2">
               <div className="flex items-center justify-between space-x-2">
                 <div>
                   <div className="justify-start">
-                    <code>{nickname}</code>
+                    <code>{nickname.name}</code>
                   </div>
                   <div className="text-xs text-gray-500">
                     Votes: {0} // TODO: fetch votes
