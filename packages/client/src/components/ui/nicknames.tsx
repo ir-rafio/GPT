@@ -103,7 +103,27 @@ function Nicknames({
                       className="rounded-full"
                       size="sm"
                       onClick={() => {
-                        console.log("minus chapse");
+                        const data = {
+                          vote: {
+                            name: nickname.name,
+                            voter: Number(window.localStorage.getItem("id")),
+                            receiver: nickname.receiver
+                          },
+                          myId: Number(window.localStorage.getItem("id"))
+                        };
+
+                        axiosClient
+                          .put(`/vote/delete`, { data })
+                          .then((res) => {
+                            toast(res.data.message, {});
+                            setIsLoaded(false);
+                          })
+                          .catch((error) => {
+                            console.error(
+                              "Error occurred while deleting vote:",
+                              error
+                            );
+                          });
                       }}
                     >
                       <FaMinus />

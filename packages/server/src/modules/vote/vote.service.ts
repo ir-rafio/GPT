@@ -11,5 +11,14 @@ export const voteService = {
       create: { ...vote }
     });
     return newVote;
+  },
+
+  deleteVote: async (vote: Omit<Vote, "updatedAt">): Promise<Vote> => {
+    const { voter, receiver } = vote;
+
+    const deletedVote = await databaseClient.vote.delete({
+      where: { voter_receiver: { voter, receiver } }
+    });
+    return deletedVote;
   }
 };
