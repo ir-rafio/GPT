@@ -5,6 +5,6 @@ export const commentRouter = Router();
 
 commentRouter.post("/add", commentController.createComment);
 
-commentRouter.delete("/delete", commentController.deleteComment);
+commentRouter.put("/delete", commentController.deleteComment);
 
 commentRouter.put("/edit", commentController.editComment);

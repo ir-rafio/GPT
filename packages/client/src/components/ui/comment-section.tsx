@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "./button";
 import { Input } from "./input";
-import { FaPaperPlane } from "react-icons/fa6";
+import { FaPaperPlane, FaTrash } from "react-icons/fa6";
 import { axiosClient } from "@/config/axios";
 
 function CommentSection({
@@ -56,7 +56,33 @@ function CommentSection({
             <div className="mb-2 font-semibold text-gray-800">
               {comment.sender} said:
             </div>
-            <div className="text-gray-800">{comment.text}</div>
+            <div className="flex items-center justify-between">
+              <div className="text-gray-800">{comment.text}</div>
+              <div>
+                {comment.sender ===
+                  Number(window.localStorage.getItem("id")) && (
+                  <Button
+                    variant="destructive"
+                    className="rounded-full"
+                    size="sm"
+                    onClick={() => {
+                      axiosClient
+                        .put(`/comment/delete`, {
+                          data: {
+                            commentId: comment.id,
+                            myId: Number(window.localStorage.getItem("id"))
+                          }
+                        })
+                        .then(() => {
+                          setIsLoaded(false);
+                        });
+                    }}
+                  >
+                    <FaTrash />
+                  </Button>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
