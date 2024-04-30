@@ -36,7 +36,7 @@ function UserPage() {
                 nicknames={student.nicknames}
               />
             </div>
-            <CommentSection id={id} />
+            <CommentSection comments={student.comments} />
           </Card>
         )}
       </div>
