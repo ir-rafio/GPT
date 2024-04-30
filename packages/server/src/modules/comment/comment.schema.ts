@@ -14,7 +14,7 @@ export const commentSchema = {
   }),
 
   deleteCommentSchema: z.object({
-    query: z.object({
+    body: z.object({
       data: z.object({
         myId: z.number(),
         commentId: z.string()
@@ -37,9 +37,9 @@ export type CreateCommentBody = z.infer<
   typeof commentSchema.createCommentSchema
 >["body"];
 
-export type DeleteCommentQuery = z.infer<
+export type DeleteCommentBody = z.infer<
   typeof commentSchema.deleteCommentSchema
->["query"];
+>["body"];
 
 export type EditCommentBody = z.infer<
   typeof commentSchema.editCommentSchema

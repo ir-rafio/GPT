@@ -5,4 +5,4 @@ export const nicknameRouter = Router();
 
 nicknameRouter.post("/create", nicknameController.createNickname);
 
-nicknameRouter.delete("/delete", nicknameController.deleteNickname);
+nicknameRouter.put("/delete", nicknameController.deleteNickname);

@@ -61,6 +61,6 @@ export const nicknameController = {
       return handleLibraryError(error, res);
     }
 
-    return res.status(204);
+    return res.status(200).json({ message: "Successfully deleted nickname" });
   }
 };

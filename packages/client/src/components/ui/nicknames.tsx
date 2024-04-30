@@ -97,7 +97,7 @@ function Nicknames({
                           };
 
                           axiosClient
-                            .delete(`/nickname/delete`, { data: { data } })
+                            .put(`/nickname/delete`, { data })
                             .then((res) => {
                               toast(res.data.message, {});
                               setIsLoaded(false);

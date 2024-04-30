@@ -5,7 +5,7 @@ import {
 } from "../../utils/error/error.util";
 import {
   CreateCommentBody,
-  DeleteCommentQuery,
+  DeleteCommentBody,
   EditCommentBody
 } from "./comment.schema";
 import { commentService } from "./comment.service";
@@ -33,10 +33,10 @@ export const commentController = {
   },
 
   deleteComment: async (
-    req: Request<{}, {}, {}, DeleteCommentQuery>,
+    req: Request<{}, {}, DeleteCommentBody>,
     res: Response
   ) => {
-    const { data } = req.query;
+    const { data } = req.body;
     const { myId, commentId } = data;
 
     try {
@@ -56,7 +56,7 @@ export const commentController = {
       return handleLibraryError(error, res);
     }
 
-    return res.status(204);
+    return res.status(200).json({ message: "Successfully deleted comment." });
   },
 
   editComment: async (req: Request<{}, {}, EditCommentBody>, res: Response) => {
