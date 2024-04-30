@@ -28,13 +28,19 @@ export default function Home() {
 
   const navigate = useNavigate();
 
+  const bgColor = "bg-sky-300";
+
   return (
     <div className="m-6 flex justify-center">
       {userData ? (
         <div>
-          <div className="m-12 mx-auto w-full text-center">
+          <div className="m-4 mx-auto w-full text-center">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               <code>Hello, {userData.metadata.name}</code>
+              <br />
+              <code className="text-2xl">
+                Time to vote for your fellow classmates' nicknames!
+              </code>
             </h1>
           </div>
 
@@ -43,7 +49,7 @@ export default function Home() {
               <CarouselContent>
                 <CarouselItem key={1}>
                   <div className="space-y-4 p-1">
-                    <Card>
+                    <Card className={bgColor}>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {cse1.map((student, index) => (
                           <Card
@@ -66,7 +72,7 @@ export default function Home() {
 
                 <CarouselItem key={2}>
                   <div className="space-y-4 p-1">
-                    <Card>
+                    <Card className={bgColor}>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {cse2.map((student, index) => (
                           <Card
@@ -89,7 +95,7 @@ export default function Home() {
 
                 <CarouselItem key={3}>
                   <div className="space-y-4 p-1">
-                    <Card>
+                    <Card className={bgColor}>
                       <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
                         {swe.map((student, index) => (
                           <Card
