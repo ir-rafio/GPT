@@ -82,11 +82,13 @@ function Nicknames({
                   </div>
                 </div>
                 <div>
-                  {nickname.votes.length === 0 && (
-                    <Button variant="destructive" size="sm" className="mr-2">
-                      <FaTrash />
-                    </Button>
-                  )}
+                  {nickname.votes.length === 0 &&
+                    nickname.sender ===
+                      Number(window.localStorage.getItem("id")) && (
+                      <Button variant="destructive" size="sm" className="mr-2">
+                        <FaTrash />
+                      </Button>
+                    )}
                   <Button
                     variant="outline"
                     className="bg-blue-600 text-white"
