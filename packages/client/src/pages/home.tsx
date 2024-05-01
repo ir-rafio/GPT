@@ -44,11 +44,9 @@ export default function Home() {
       window.localStorage.setItem("name", res.data.metadata.name);
     });
 
-    axiosClient
-      .get(`/student/classmate/${userData?.metadata.studentId}/list`)
-      .then((res) => {
-        setAllClassmates(res.data.students);
-      });
+    axiosClient.get(`/student/classmate/list`).then((res) => {
+      setAllClassmates(res.data.students);
+    });
   }, []);
 
   const navigate = useNavigate();

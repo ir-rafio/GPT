@@ -11,4 +11,4 @@ studentRouter.post("/edit/post", studentController.editMyInfo);
 
 studentRouter.get("/classmate/:id/get", studentController.getClassmate);
 
-studentRouter.get("/classmate/:myId/list", studentController.getAllClassmates);
+studentRouter.get("/classmate/list", studentController.getAllClassmates);
