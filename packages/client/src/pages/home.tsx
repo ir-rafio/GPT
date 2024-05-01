@@ -57,7 +57,7 @@ export default function Home() {
     <div className="m-6 flex justify-center">
       {userData && allClassmates ? (
         <div>
-          <div className="m-4 mx-auto w-full text-center">
+          <div className="mx-auto w-full p-4 text-center">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
               <code>Hello, {userData.metadata.name}</code>
               <br />
@@ -68,14 +68,14 @@ export default function Home() {
           </div>
 
           <div className="flex items-center justify-center">
-            <Carousel className="h-full w-11/12">
+            <Carousel className="h-full w-80 md:w-11/12">
               <CarouselContent>
                 {Object.values(createClassmatesMap(allClassmates)).map(
                   (cse1, index) => (
                     <CarouselItem key={index}>
                       <div className="space-y-4 p-1">
                         <Card className={bgColor}>
-                          <CardContent className="mt-4 grid grid-cols-5 grid-rows-8 gap-4">
+                          <CardContent className="mt-4 grid grid-rows-8 gap-4 md:grid-cols-5">
                             {cse1.map((student, index) => (
                               <Card
                                 key={index}
