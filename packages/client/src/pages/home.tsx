@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { axiosClient } from "@/config/axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface UserData {
   metadata: {
@@ -49,10 +49,6 @@ export default function Home() {
     });
   }, []);
 
-  const navigate = useNavigate();
-
-  const bgColor = "bg-sky-300";
-
   return (
     <div className="m-6 flex justify-center">
       {userData && allClassmates ? (
@@ -74,23 +70,18 @@ export default function Home() {
                   (cse1, index) => (
                     <CarouselItem key={index}>
                       <div className="space-y-4 p-1">
-                        <Card className={bgColor}>
+                        <Card className="bg-sky-300">
                           <CardContent className="mt-4 grid grid-rows-8 gap-4 md:grid-cols-5">
                             {cse1.map((student, index) => (
                               <Link to={`/users/${student.metadata.studentId}`}>
                                 <Card
                                   key={index}
-                                  className="hover:drop-shadow-lg"
-                                  onClick={() =>
-                                    navigate(
-                                      `/users/${student.metadata.studentId}`
-                                    )
-                                  }
+                                  className="hover:drop-shadow-lg md:h-32"
                                 >
-                                  <CardHeader className="p-4 pb-1 font-semibold">
+                                  <CardHeader className="p-2 font-semibold md:p-4">
                                     {student.metadata.studentId}
                                   </CardHeader>
-                                  <CardContent className="p-4 pt-1">
+                                  <CardContent className="p-2 md:p-4 md:pt-1">
                                     <code>{student.metadata.name}</code>
                                   </CardContent>
                                 </Card>
