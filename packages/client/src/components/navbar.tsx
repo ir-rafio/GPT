@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSessionContext } from "supertokens-auth-react/recipe/session";
 import { signOut } from "supertokens-web-js/recipe/session";
-import { ThemeToggle } from "./theme-toggle";
 import { Button, buttonVariants } from "./ui/button";
 
 export const NavBar = () => {
@@ -16,7 +15,6 @@ export const NavBar = () => {
         <code className="text-red-500">T</code>shirt
       </Link>
       <div className="flex-center ml-auto gap-4">
-        <ThemeToggle />
         <AuthButton isSignedIn={isSignedIn} />
       </div>
     </div>
