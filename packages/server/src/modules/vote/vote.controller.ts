@@ -9,8 +9,9 @@ import { voteService } from "./vote.service";
 export const voteController = {
   addVote: async (req: Request<{}, {}, AddVoteBody>, res: Response) => {
     const { data } = req.body;
-    const { vote, myId } = data;
+    const { vote } = data;
     const { voter } = vote;
+    const myId = res.locals.user.studentId;
 
     if (voter !== myId)
       return handleClientError(
@@ -36,8 +37,9 @@ export const voteController = {
 
   deleteVote: async (req: Request<{}, {}, AddVoteBody>, res: Response) => {
     const { data } = req.body;
-    const { vote, myId } = data;
+    const { vote } = data;
     const { voter } = vote;
+    const myId = res.locals.user.studentId;
 
     if (voter !== myId)
       return handleClientError(
