@@ -10,6 +10,9 @@ export const authenticateUser = async (
 ) => {
   try {
     const session = await Session.getSession(req, res);
+    if (!session) {
+      return handleClientError(401, "Invalid session", res);
+    }
     const userId = session.getUserId();
     const accessTokenPayload = session.getAccessTokenPayload();
     res.locals.user = {
