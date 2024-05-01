@@ -91,8 +91,7 @@ export const studentController = {
     const myId = res.locals.user.studentId;
 
     try {
-      const students: Classmate[] | null =
-        await studentService.getAllClassmates(Number(myId));
+      const students = await studentService.getAllClassmates(Number(myId));
 
       if (!students)
         return handleClientError(500, "Could not find student.", res);

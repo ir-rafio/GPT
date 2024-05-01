@@ -91,10 +91,11 @@ export const studentService = {
     return student;
   },
 
-  getAllClassmates: async (studentId: number): Promise<Classmate[] | null> => {
+  getAllClassmates: async (
+    studentId: number
+  ): Promise<Omit<Classmate, "nicknames" | "comments">[] | null> => {
     const students = await databaseClient.student.findMany({
       where: { NOT: { id: studentId } },
-      include: { nicknames: true, comments: true },
       orderBy: { id: "asc" }
     });
 
