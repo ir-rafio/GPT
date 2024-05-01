@@ -34,7 +34,12 @@ bun prisma generate
 
 ### Run dev server
 
-Make sure to populate all environment variables from `.env.example`
+Make sure to populate all environment variables from `.env.example`.
+Then link the `.env` file in clients folder.
+
+```sh
+cd packages/client && ln -s ../../.env; cd -
+```
 
 ```sh
 bun dev
