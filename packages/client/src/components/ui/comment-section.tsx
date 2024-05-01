@@ -13,7 +13,7 @@ function CommentSection({
 }) {
   const [comment, setComment] = useState("");
   return (
-    <div className="m-12">
+    <div className="p-2 md:p-12">
       <div className="ml-2">Comments</div>
       <div className="flex items-center justify-between">
         <Input
