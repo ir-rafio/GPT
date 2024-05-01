@@ -81,6 +81,13 @@ export const studentService = {
     });
 
     if (!student) return null;
+
+    const sortedNicknames = student.nicknames.sort((a, b) => {
+      return b.votes.length - a.votes.length;
+    });
+
+    student.nicknames = sortedNicknames;
+
     return student;
   },
 
