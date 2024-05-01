@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { axiosClient } from "@/config/axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface UserData {
   metadata: {
@@ -77,22 +77,24 @@ export default function Home() {
                         <Card className={bgColor}>
                           <CardContent className="mt-4 grid grid-rows-8 gap-4 md:grid-cols-5">
                             {cse1.map((student, index) => (
-                              <Card
-                                key={index}
-                                className="hover:drop-shadow-lg"
-                                onClick={() =>
-                                  navigate(
-                                    `/users/${student.metadata.studentId}`
-                                  )
-                                }
-                              >
-                                <CardHeader className="p-4 pb-1 font-semibold">
-                                  {student.metadata.studentId}
-                                </CardHeader>
-                                <CardContent className="p-4 pt-1">
-                                  <code>{student.metadata.name}</code>
-                                </CardContent>
-                              </Card>
+                              <Link to={`/users/${student.metadata.studentId}`}>
+                                <Card
+                                  key={index}
+                                  className="hover:drop-shadow-lg"
+                                  onClick={() =>
+                                    navigate(
+                                      `/users/${student.metadata.studentId}`
+                                    )
+                                  }
+                                >
+                                  <CardHeader className="p-4 pb-1 font-semibold">
+                                    {student.metadata.studentId}
+                                  </CardHeader>
+                                  <CardContent className="p-4 pt-1">
+                                    <code>{student.metadata.name}</code>
+                                  </CardContent>
+                                </Card>
+                              </Link>
                             ))}
                           </CardContent>
                         </Card>
