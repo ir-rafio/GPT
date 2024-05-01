@@ -54,7 +54,7 @@ function CommentSection({
         {comments.map((comment: any, idx: any) => (
           <div key={idx} className="my-2 rounded-lg bg-cyan-100 p-4">
             <div className="mb-2 font-semibold text-gray-800">
-              {comment.sender} said:
+              {comment.sender}:
             </div>
             <div className="flex items-center justify-between">
               <div className="text-gray-800">{comment.text}</div>
