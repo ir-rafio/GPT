@@ -14,6 +14,7 @@ export const authenticateUser = async (
     const accessTokenPayload = session.getAccessTokenPayload();
     res.locals.user = {
       userId,
+      name: accessTokenPayload.name,
       studentId: accessTokenPayload.studentId
     };
     return next();
