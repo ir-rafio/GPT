@@ -15,6 +15,7 @@ import {
 import { getDirname } from "./utils/dir";
 import path from "path";
 import { userRouter } from "./modules/user/user.route";
+import { authenticateUser } from "./middlewares/user.middleware";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.set("port", Number(process.env.PORT) || 5001);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
+app.use(authenticateUser);
 //Routes
 app.use("/api/student", studentRouter);
 app.use("/api/nickname", nicknameRouter);

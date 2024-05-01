@@ -14,6 +14,7 @@ export const studentController = {
   ) => {
     const { data } = req.body;
     const { student } = data;
+    student.id = res.locals.user.studentId;
 
     let newStudent;
 
@@ -30,7 +31,7 @@ export const studentController = {
   },
 
   getMyInfo: async (req: Request, res: Response) => {
-    const { myId } = req.params;
+    const myId = res.locals.user.studentId;
 
     try {
       const student: Me | null = await studentService.getMyInfo(Number(myId));
@@ -46,7 +47,8 @@ export const studentController = {
 
   editMyInfo: async (req: Request<{}, {}, EditStudentBody>, res: Response) => {
     const { data } = req.body;
-    const { myId, note, tshirtSize } = data;
+    const { note, tshirtSize } = data;
+    const myId = res.locals.user.studentId;
 
     try {
       const student: Me | null = await studentService.editMyInfo(
@@ -82,7 +84,7 @@ export const studentController = {
   },
 
   getAllClassmates: async (req: Request, res: Response) => {
-    const { myId } = req.params;
+    const myId = res.locals.user.studentId;
 
     try {
       const students: Classmate[] | null =

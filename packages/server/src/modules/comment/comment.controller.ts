@@ -17,11 +17,15 @@ export const commentController = {
   ) => {
     const { data } = req.body;
     const { comment } = data;
+    const myId = res.locals.user.studentId;
 
     let newComment;
 
     try {
-      newComment = await commentService.createComment(comment);
+      newComment = await commentService.createComment({
+        ...comment,
+        sender: myId
+      });
     } catch (error) {
       return handleLibraryError(error, res);
     }
@@ -37,7 +41,8 @@ export const commentController = {
     res: Response
   ) => {
     const { data } = req.body;
-    const { myId, commentId } = data;
+    const { commentId } = data;
+    const myId = res.locals.user.studentId;
 
     try {
       const sender = await commentService.getSender(commentId);
@@ -61,7 +66,8 @@ export const commentController = {
 
   editComment: async (req: Request<{}, {}, EditCommentBody>, res: Response) => {
     const { data } = req.body;
-    const { myId, commentId, text } = data;
+    const { commentId, text } = data;
+    const myId = res.locals.user.studentId;
 
     try {
       const sender = await commentService.getSender(commentId);

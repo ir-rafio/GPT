@@ -96,7 +96,7 @@ supertokens.init({
               const { metadata } = await UserMetadata.getUserMetadata(userId);
               input.accessTokenPayload = {
                 ...input.accessTokenPayload,
-                studentId: metadata.studentId,
+                studentId: Number(metadata.studentId),
                 name: metadata.name
               };
               return originalImplementation.createNewSession(input);
