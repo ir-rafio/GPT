@@ -13,11 +13,15 @@ export const nicknameController = {
   ) => {
     const { data } = req.body;
     const { nickname } = data;
+    const myId = res.locals.user.studentId;
 
     let newNickname;
 
     try {
-      newNickname = await nicknameService.createNickname(nickname);
+      newNickname = await nicknameService.createNickname({
+        ...nickname,
+        sender: myId
+      });
     } catch (error) {
       return handleLibraryError(error, res);
     }
@@ -34,7 +38,8 @@ export const nicknameController = {
   ) => {
     console.log(req.body);
     const { data } = req.body;
-    const { myId, name, receiver } = data;
+    const { name, receiver } = data;
+    const myId = res.locals.user.studentId;
 
     try {
       const sender = await nicknameService.getSender(name, receiver);
