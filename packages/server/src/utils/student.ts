@@ -17,24 +17,12 @@ export const seedStudents = async () => {
 };
 
 export const seedNicknames = async () => {
-  console.log(nicknames.length);
-  let missingId = [];
   for (const nickname of nicknames) {
     const { name, sender, receiver } = nickname;
-    try {
-      await databaseClient.nickname.upsert({
-        where: { name_receiver: { name, receiver } },
-        update: { sender },
-        create: { ...nickname }
-      });
-    } catch (error) {
-      missingId.push(receiver);
-      console.log(nickname);
-      // console.log(error);
-    }
-  }
-  const unique = [...new Set(missingId)];
-  for (const id of unique) {
-    console.log(id);
+    await databaseClient.nickname.upsert({
+      where: { name_receiver: { name, receiver } },
+      update: { sender },
+      create: { ...nickname }
+    });
   }
 };
