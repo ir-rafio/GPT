@@ -23,6 +23,8 @@ export default function Home() {
   useEffect(() => {
     axiosClient.get("/user/data").then((res) => {
       setUserData(res.data);
+      window.localStorage.setItem("id", res.data.metadata.studentId);
+      window.localStorage.setItem("name", res.data.metadata.name);
     });
   }, []);
 
