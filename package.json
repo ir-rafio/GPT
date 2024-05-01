@@ -17,7 +17,7 @@
     "build:client": "bun --cwd packages/client build:prod",
     "build:dev": "bun build:server:dev && bun build:client",
     "build:prod": "bun build:server && bun build:client",
-    "start": "bun packages/server/dist/index.js",
+    "start": "bun packages/server/dist/app.js",
     "db:start": "docker compose up -d",
     "db:stop": "docker compose stop",
     "build-start": "bun run build && bun start",

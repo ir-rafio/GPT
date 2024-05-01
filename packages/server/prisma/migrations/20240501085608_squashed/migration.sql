@@ -1,28 +1,27 @@
 -- CreateTable
 CREATE TABLE "Student" (
-    "id" INTEGER NOT NULL,
-    "name" TEXT NOT NULL,
-    "oauthToken" TEXT NOT NULL,
-    "tshirtSize" TEXT NOT NULL,
-    "note" TEXT NOT NULL,
+    "id" INT4 NOT NULL,
+    "name" STRING NOT NULL,
+    "tshirtSize" STRING NOT NULL DEFAULT 'L',
+    "note" STRING NOT NULL DEFAULT '',
 
     CONSTRAINT "Student_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Nickname" (
-    "name" TEXT NOT NULL,
-    "sender" INTEGER NOT NULL,
-    "receiver" INTEGER NOT NULL,
+    "name" STRING NOT NULL,
+    "sender" INT4 NOT NULL,
+    "receiver" INT4 NOT NULL,
 
     CONSTRAINT "Nickname_pkey" PRIMARY KEY ("name","receiver")
 );
 
 -- CreateTable
 CREATE TABLE "Vote" (
-    "name" TEXT NOT NULL,
-    "voter" INTEGER NOT NULL,
-    "receiver" INTEGER NOT NULL,
+    "name" STRING NOT NULL,
+    "voter" INT4 NOT NULL,
+    "receiver" INT4 NOT NULL,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Vote_pkey" PRIMARY KEY ("voter","receiver")
@@ -30,10 +29,10 @@ CREATE TABLE "Vote" (
 
 -- CreateTable
 CREATE TABLE "Comment" (
-    "id" TEXT NOT NULL,
-    "text" TEXT NOT NULL,
-    "sender" INTEGER NOT NULL,
-    "receiver" INTEGER NOT NULL,
+    "id" STRING NOT NULL,
+    "text" STRING NOT NULL,
+    "sender" INT4 NOT NULL,
+    "receiver" INT4 NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -42,7 +41,7 @@ CREATE TABLE "Comment" (
 
 -- CreateTable
 CREATE TABLE "Nerd" (
-    "id" INTEGER NOT NULL,
+    "id" INT4 NOT NULL,
 
     CONSTRAINT "Nerd_pkey" PRIMARY KEY ("id")
 );
