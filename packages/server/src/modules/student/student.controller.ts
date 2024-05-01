@@ -68,6 +68,10 @@ export const studentController = {
 
   getClassmate: async (req: Request, res: Response) => {
     const { id } = req.params;
+    const myId = res.locals.user.studentId;
+    if (id == myId) {
+      return handleClientError(401, "You can't see your own page", res);
+    }
 
     try {
       const student: Classmate | null = await studentService.getClassmate(
