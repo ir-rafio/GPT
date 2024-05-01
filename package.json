@@ -16,10 +16,11 @@
     "build:server:dev": "bun --cwd packages/server build:dev",
     "build:client": "bun --cwd packages/client build:prod",
     "build:dev": "bun build:server:dev && bun build:client",
-    "build:prod": "bun build:server && bun build:client",
+    "build:prod": "bun db:generate && bun build:server && bun build:client",
     "start": "bun packages/server/dist/app.js",
     "db:start": "docker compose up -d",
     "db:stop": "docker compose stop",
+    "db:generate": "prisma generate",
     "build-start": "bun run build && bun start",
     "prepare": "husky install",
     "format": "prettier --config .prettierrc '**/*.{ts,tsx,prisma,json}' --write"
