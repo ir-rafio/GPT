@@ -4,6 +4,7 @@ import { FaMinus, FaPlus, FaTrash } from "react-icons/fa6";
 import { axiosClient } from "@/config/axios";
 import { toast } from "sonner";
 import { useState } from "react";
+import { Input } from "./input";
 
 function Nicknames({
   nicknames,
@@ -25,11 +26,10 @@ function Nicknames({
         </div>
         {!isMe && (
           <div className="m-2 ml-4 flex items-center justify-start">
-            <input
+            <Input
               type="text"
               placeholder="Add a nickname..."
               value={nickname}
-              className="rounded-md border border-gray-200 p-2"
               onChange={(e) => setNickname(e.target.value)}
             />
             <Button
