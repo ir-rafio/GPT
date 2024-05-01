@@ -73,7 +73,10 @@ export default function Home() {
                         <Card className="bg-sky-300">
                           <CardContent className="mt-4 grid grid-rows-8 gap-4 md:grid-cols-5">
                             {cse1.map((student, index) => (
-                              <Link to={`/users/${student.metadata.studentId}`}>
+                              <Link
+                                to={`/users/${student.metadata.studentId}`}
+                                target="_blank"
+                              >
                                 <Card
                                   key={index}
                                   className="hover:drop-shadow-lg md:h-32"
