@@ -29,8 +29,10 @@ function UserPage() {
       <div>
         {isLoaded && (
           <Card>
-            <div className="flex justify-between">
-              <UserDetails id={id} student={student} />
+            <div className="justify-center gap-x-12 md:flex">
+              <div className="flex items-center justify-center">
+                <UserDetails id={id} student={student} />
+              </div>
               <Nicknames
                 setIsLoaded={setIsLoaded}
                 nicknames={student.nicknames}

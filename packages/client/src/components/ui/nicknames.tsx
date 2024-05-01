@@ -18,14 +18,14 @@ function Nicknames({
 
   return (
     <>
-      <div className="m-2 mr-24 mt-8">
-        <div className="ml-4">
+      <div className="p-4">
+        <div>
           <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
             Nicknames
           </h2>
         </div>
         {!isMe && (
-          <div className="m-2 ml-4 flex items-center justify-start">
+          <div className="flex items-center justify-start py-2">
             <Input
               type="text"
               placeholder="Add a nickname..."
@@ -69,9 +69,9 @@ function Nicknames({
             </Button>
           </div>
         )}
-        <div className="max-w-160 m-2 max-h-80 overflow-y-auto">
+        <div className="max-h-80 overflow-y-auto md:w-96">
           {nicknames.map((nickname: any, idx: any) => (
-            <Card key={idx} className="m-2 w-96 p-2">
+            <Card key={idx} className="w-full p-2">
               <div className="flex items-center justify-between space-x-2">
                 <div>
                   <div className="justify-start">
