@@ -11,7 +11,11 @@ export const authenticateUser = async (
   try {
     const session = await Session.getSession(req, res);
     const userId = session.getUserId();
-    res.locals.userId = userId;
+    const accessTokenPayload = session.getAccessTokenPayload();
+    res.locals.user = {
+      userId,
+      studentId: accessTokenPayload.studentId
+    };
     return next();
   } catch (err) {
     return handleClientError(500, "Couldnt authenticate user", res);

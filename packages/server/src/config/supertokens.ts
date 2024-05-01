@@ -86,7 +86,25 @@ supertokens.init({
         ]
       }
     }),
-    Session.init(),
+    Session.init({
+      override: {
+        functions: (originalImplementation) => {
+          return {
+            ...originalImplementation,
+            createNewSession: async function (input) {
+              const userId = input.userId;
+              const { metadata } = await UserMetadata.getUserMetadata(userId);
+              input.accessTokenPayload = {
+                ...input.accessTokenPayload,
+                studentId: metadata.studentId,
+                name: metadata.name
+              };
+              return originalImplementation.createNewSession(input);
+            }
+          };
+        }
+      }
+    }),
     Dashboard.init()
   ]
 });
