@@ -36,7 +36,6 @@ export const nicknameController = {
     req: Request<{}, {}, DeleteNicknameBody>,
     res: Response
   ) => {
-    console.log(req.body);
     const { data } = req.body;
     const { name, receiver } = data;
     const myId = res.locals.user.studentId;

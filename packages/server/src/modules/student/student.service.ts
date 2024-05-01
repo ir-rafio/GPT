@@ -94,7 +94,8 @@ export const studentService = {
   getAllClassmates: async (studentId: number): Promise<Classmate[] | null> => {
     const students = await databaseClient.student.findMany({
       where: { NOT: { id: studentId } },
-      include: { nicknames: true, comments: true }
+      include: { nicknames: true, comments: true },
+      orderBy: { id: "asc" }
     });
 
     if (!students) return null;
