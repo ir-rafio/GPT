@@ -120,7 +120,7 @@ function Nicknames({
                   ) ? (
                     <Button
                       variant="destructive"
-                      className="rounded-full"
+                      className="rounded-full bg-orange-400"
                       size="sm"
                       onClick={() => {
                         const data = {
